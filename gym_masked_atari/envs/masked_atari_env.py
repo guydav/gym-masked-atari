@@ -61,4 +61,4 @@ class MaskedAtariEnv(gym.Env):
                 category_masks[i:] = all_mask_results[current_index:]
                 break
 
-        return category_masks * self.zero_mask
+        return category_masks * self.zero_mask, *result[1:]
