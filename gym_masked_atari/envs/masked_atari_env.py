@@ -29,8 +29,7 @@ class MaskedAtariEnv(atari.AtariEnv):
 
         self.all_colors = np.stack([np.ones(self.default_observation_shape, dtype=np.uint8) * c for c in all_colors])
         self.category_lengths = [len(masker.filter_colors) for masker in self.masker_definitions]
-        self.zero_mask = np.ones(len(self.masker_definitions), *self.default_observation_shape,
-                                 dtype=np.uint8)
+        self.zero_mask = np.ones((len(self.masker_definitions), *self.default_observation_shape), dtype=np.uint8)
 
         for i, masker_def in enumerate(self.masker_definitions):
             if zero_mask_indices is not None and i in zero_mask_indices:
@@ -53,8 +52,7 @@ class MaskedAtariEnv(atari.AtariEnv):
         obs = result[0]
 
         all_mask_results = (obs == self.all_colors).all(axis=3)
-        category_masks = np.zeros(len(self.masker_definitions), *self.default_observation_shape,
-                                  dtype=np.uint8)
+        category_masks = np.zeros((len(self.masker_definitions), *self.default_observation_shape), dtype=np.uint8)
 
         current_index = 0
         for i, length in enumerate(self.category_lengths):
