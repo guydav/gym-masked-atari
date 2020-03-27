@@ -1,9 +1,10 @@
 import gym
+from gym.envs import atari
 import numpy as np
 from .frostbite_masker import FROSTBITE_MASKER_DEFINITIONS
 
 
-class MaskedAtariEnv(gym.Env):
+class MaskedAtariEnv(atari.AtariEnv):
     # TODO: what does this do?
     # metadata = {'render.modes': ['human']}
 
