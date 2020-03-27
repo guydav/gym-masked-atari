@@ -57,15 +57,15 @@ class MaskedAtariEnv(atari.AtariEnv):
 
     def _augment_observation(self, obs):
         all_mask_results = (obs == self.all_colors).all(axis=3)
-        print(all_mask_results.shape)
-        category_masks = np.zeros((len(self.masker_definitions), *self.default_observation_shape), dtype=np.uint8)
-        print(category_masks.shape)
+        # print(all_mask_results.shape)
+        category_masks = np.zeros((len(self.masker_definitions), *self.default_observation_shape[:-1]), dtype=np.uint8)
+        # print(category_masks.shape)
 
         current_index = 0
         for i, length in enumerate(self.category_lengths):
             if length > 1:
-                print(category_masks[i].shape)
-                print(all_mask_results[current_index: current_index + length].any(axis=0).shape)
+                # print(category_masks[i].shape)
+                # print(all_mask_results[current_index: current_index + length].any(axis=0).shape)
                 category_masks[i] = all_mask_results[current_index: current_index + length].any(axis=0)
                 current_index += length
             else:
